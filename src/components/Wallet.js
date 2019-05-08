@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { makeDeposit } from '../redux/actions/balance';
 
 export class Wallet extends Component {
   state = {
@@ -9,14 +10,23 @@ export class Wallet extends Component {
 
   static propTypes = {
     balance: PropTypes.number,
+    makeDeposit: PropTypes.func,
   };
 
   static defaultProps = {
     balance: undefined,
+    makeDeposit: () => {},
   };
 
   changeInputValue = (event) => {
     this.setState({ inputValue: Number(event.target.value) });
+  }
+
+  makeDeposit = () => {
+    const { inputValue } = this.state;
+    const { makeDeposit } = this.props;
+
+    makeDeposit(inputValue);
   }
 
   render() {
@@ -32,6 +42,13 @@ export class Wallet extends Component {
           onChange={this.changeInputValue}
           value={inputValue}
         />
+        <button
+          type="button"
+          className="btn-deposit"
+          onClick={this.makeDeposit}
+        >
+          Deposit
+        </button>
       </div>
     );
   }
@@ -43,4 +60,8 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps, null)(Wallet);
+const mapDispatchToProps = {
+  makeDeposit,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

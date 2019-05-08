@@ -6,7 +6,8 @@ import { Wallet } from './Wallet';
 configure({ adapter: new Adapter() });
 
 describe('Wallet', () => {
-  const props = { balance: 20 };
+  const mockMakeDeposit = jest.fn();
+  const props = { balance: 20, makeDeposit: mockMakeDeposit };
   const wrapper = shallow(<Wallet {...props} />);
 
   it('renders properly', () => {
@@ -31,6 +32,16 @@ describe('Wallet', () => {
 
     it('updates the local wallet balance in `state` and converts it to a number', () => {
       expect(wrapper.state().inputValue).toEqual(Number(userBalance));
+    });
+
+    describe('and the user wants to make a deposit', () => {
+      beforeEach(() => {
+        wrapper.find('.btn-deposit').simulate('click');
+      });
+
+      it('dispatches the `makeDeposit()` it receives from props with local balance', () => {
+        expect(mockMakeDeposit).toHaveBeenCalledWith(Number(userBalance));
+      });
     });
   });
 });
