@@ -5,6 +5,12 @@ export const setBalance = balance => ({
   balance,
 });
 
+export const makeDeposit = deposit => ({
+  type: constants.MAKE_DEPOSIT,
+  deposit,
+});
+
 export default {
   setBalance,
+  makeDeposit,
 };
