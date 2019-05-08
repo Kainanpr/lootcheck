@@ -1,9 +1,11 @@
 export const SET_BALANCE = 'SET_BALANCE';
 export const MAKE_DEPOSIT = 'DEPOSIT';
 export const MAKE_WITHDRAW = 'MAKE_WITHDRAW';
+export const FETCH_BITCOIN = 'FETCH_BITCOIN';
 
 export default {
   SET_BALANCE,
   MAKE_DEPOSIT,
   MAKE_WITHDRAW,
+  FETCH_BITCOIN,
 };
