@@ -9,7 +9,7 @@ export const balance = (state = INITIAL_STATE, action) => {
     case constants.SET_BALANCE:
       return action.balance;
     default:
-      return balance;
+      return state;
   }
 };
 
