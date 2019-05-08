@@ -20,5 +20,12 @@ exports[`Wallet renders properly 1`] = `
   >
     Deposit
   </button>
+  <button
+    className="btn-withdraw"
+    onClick={[Function]}
+    type="button"
+  >
+    Withdraw
+  </button>
 </div>
 `;

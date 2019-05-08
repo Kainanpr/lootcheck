@@ -7,7 +7,8 @@ configure({ adapter: new Adapter() });
 
 describe('Wallet', () => {
   const mockMakeDeposit = jest.fn();
-  const props = { balance: 20, makeDeposit: mockMakeDeposit };
+  const mockMakeWithDraw = jest.fn();
+  const props = { balance: 20, makeDeposit: mockMakeDeposit, makeWithdraw: mockMakeWithDraw };
   const wrapper = shallow(<Wallet {...props} />);
 
   it('renders properly', () => {
@@ -39,8 +40,18 @@ describe('Wallet', () => {
         wrapper.find('.btn-deposit').simulate('click');
       });
 
-      it('dispatches the `makeDeposit()` it receives from props with local balance', () => {
+      it('dispatches the `makeDeposit()` it receives from props with the local balance', () => {
         expect(mockMakeDeposit).toHaveBeenCalledWith(Number(userBalance));
+      });
+    });
+
+    describe('and the user wants to make a withdraw', () => {
+      beforeEach(() => {
+        wrapper.find('.btn-withdraw').simulate('click');
+      });
+
+      it('dispatches the `makeWithdraw()` it receives from props with the local balance', () => {
+        expect(mockMakeWithDraw).toHaveBeenCalledWith(Number(userBalance));
       });
     });
   });

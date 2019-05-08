@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { makeDeposit } from '../redux/actions/balance';
+import { makeDeposit, makeWithdraw } from '../redux/actions/balance';
 
 export class Wallet extends Component {
   state = {
@@ -29,6 +29,13 @@ export class Wallet extends Component {
     makeDeposit(inputValue);
   }
 
+  makeWithdraw = () => {
+    const { inputValue } = this.state;
+    const { makeWithdraw } = this.props;
+
+    makeWithdraw(inputValue);
+  }
+
   render() {
     const { balance } = this.props;
     const { inputValue } = this.state;
@@ -49,6 +56,13 @@ export class Wallet extends Component {
         >
           Deposit
         </button>
+        <button
+          type="button"
+          className="btn-withdraw"
+          onClick={this.makeWithdraw}
+        >
+          Withdraw
+        </button>
       </div>
     );
   }
@@ -62,6 +76,7 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = {
   makeDeposit,
+  makeWithdraw,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
