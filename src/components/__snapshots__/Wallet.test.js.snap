@@ -11,6 +11,7 @@ exports[`Wallet renders properly 1`] = `
   <br />
   <input
     className="input-wallet"
+    onChange={[Function]}
   />
 </div>
 `;
