@@ -10,7 +10,13 @@ export const makeDeposit = deposit => ({
   deposit,
 });
 
+export const makeWithdraw = withdraw => ({
+  type: constants.MAKE_WITHDRAW,
+  withdraw,
+});
+
 export default {
   setBalance,
   makeDeposit,
+  makeWithdraw,
 };

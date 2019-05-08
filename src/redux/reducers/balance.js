@@ -10,6 +10,8 @@ export const balance = (state = INITIAL_STATE.balance, action) => {
       return action.balance;
     case constants.MAKE_DEPOSIT:
       return state + action.deposit;
+    case constants.MAKE_WITHDRAW:
+      return state - action.withdraw;
     default:
       return state;
   }
