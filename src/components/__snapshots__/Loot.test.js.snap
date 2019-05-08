@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loot renders properly 1`] = `
+<Loot
+  balance={10}
+  bitcoin={Object {}}
+  fetchBitcoin={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+>
+  <h3>
+    Bitcoin balance:
+  </h3>
+</Loot>
+`;
