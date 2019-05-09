@@ -7,10 +7,14 @@ import { fetchBitcoin } from '../redux/actions/bitcoin';
 export class Loot extends Component {
   static propTypes = {
     fetchBitcoin: PropTypes.func,
+    balance: PropTypes.number,
+    bitcoin: PropTypes.objectOf(PropTypes.any),
   };
 
   static defaultProps = {
     fetchBitcoin: () => {},
+    balance: undefined,
+    bitcoin: {},
   };
 
   componentDidMount() {
@@ -19,9 +23,17 @@ export class Loot extends Component {
     fetchBitcoin();
   }
 
+  computeBitcoin = () => {
+    const { bitcoin, balance } = this.props;
+
+    if (Object.keys(bitcoin).length === 0) return '';
+
+    return balance / Number(bitcoin.bpi.USD.rate.replace(',', ''));
+  }
+
   render() {
     return (
-      <h3>Bitcoin balance:</h3>
+      <h3>Bitcoin balance: {this.computeBitcoin()}</h3>
     );
   }
 }
