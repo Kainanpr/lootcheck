@@ -21,4 +21,8 @@ describe('App', () => {
   it('contains a connected Loot component', () => {
     expect(wrapper.contains(<Loot />)).toBe(true);
   });
+
+  it('contains a link to the coindesk price page', () => {
+    expect(wrapper.find('a').props().href).toBe('https://www.coindesk.com/price');
+  });
 });
